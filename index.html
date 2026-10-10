@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123b32">
+<title>الإنجيل | كلمة نور كل يوم</title>
+<style>
+:root{--green:#123b32;--green2:#1e5b49;--gold:#d9b66d;--cream:#fffaf0;--ink:#24352e}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--ink);background:linear-gradient(160deg,#f8f0dc,#edf5ed);min-height:100vh}
+header{background:linear-gradient(135deg,#0d2f29,#1d5b48);color:#fff;text-align:center;padding:30px 18px 38px;border-bottom:4px solid var(--gold)}
+.cross{font-size:35px;color:var(--gold);margin-bottom:6px}
+h1{font-size:clamp(30px,7vw,46px);margin:5px 0;letter-spacing:.5px}
+.subtitle{color:#f4e7c7;font-size:15px;line-height:1.8}
+.wrap{width:min(720px,92%);margin:-18px auto 35px;position:relative}
+.card{background:rgba(255,255,255,.96);border:1px solid #e4d6b6;border-radius:22px;padding:23px;box-shadow:0 12px 35px #163a2b18;margin-bottom:18px}
+h2{color:var(--green);margin:0 0 14px;font-size:22px}
+.dates{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.datebox{background:#f8f4e9;border:1px solid #eadbb8;border-radius:15px;padding:15px;text-align:center}
+.datebox small{display:block;color:#6b756e;margin-bottom:8px}
+.datebox strong{display:block;color:var(--green);font-size:17px;line-height:1.7}
+label{display:block;font-weight:bold;color:var(--green);margin:16px 0 8px}
+input{width:100%;font:inherit;padding:14px 15px;border:1px solid #cbd8ce;border-radius:12px;background:#fff;outline:none}
+input:focus{border-color:var(--green2);box-shadow:0 0 0 3px #1e5b4918}
+button{font:inherit;font-weight:bold;cursor:pointer;border:0;border-radius:13px;padding:15px 18px;width:100%;margin-top:16px;background:linear-gradient(135deg,var(--green),var(--green2));color:white;box-shadow:0 5px 14px #123b3225}
+button:hover{filter:brightness(1.08)}
+.note{font-size:13px;color:#65736a;line-height:1.8;margin:12px 0 0}
+#versePage{display:none}
+.verse-card{background:linear-gradient(150deg,#fffdf6,#f5f0df);border:1px solid #ddc88e;border-radius:18px;padding:22px;text-align:center}
+.verse-mark{font-size:30px;color:#b58b38}
+.greeting{color:var(--green);font-weight:bold;font-size:20px;margin:9px 0}
+.verse{font-size:23px;line-height:2.1;color:#243e32;margin:15px 0}
+.reference{color:#876b2f;font-weight:bold}
+.prayer{line-height:2;color:#4d6256;background:#f0f6f0;border-radius:14px;padding:15px;margin-top:16px}
+.back{background:#e8eee8;color:var(--green);box-shadow:none}
+footer{text-align:center;padding:15px 18px 30px;color:#5e6c61;font-size:13px;line-height:1.9}
+.hidden{display:none}
+@media(max-width:420px){.card{padding:18px}.dates{gap:8px}.datebox{padding:12px 7px}.verse{font-size:21px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="cross">✝</div>
+  <h1>الإنجيل</h1>
+  <div class="subtitle">كلمة نور ورجاء كل يوم<br>افتح قلبك لكلمة الله، وخذ معك رسالة تشجيع.</div>
+</header>
+<main class="wrap">
+  <section id="homePage">
+    <div class="card">
+      <h2>📅 التاريخ اليوم</h2>
+      <div class="dates">
+        <div class="datebox"><small>النهارده</small><strong id="todayDate">جارٍ تحديد التاريخ…</strong></div>
+        <div class="datebox"><small>بُكره</small><strong id="tomorrowDate">جارٍ تحديد التاريخ…</strong></div>
+      </div>
+      <p class="note">التاريخ بيتحدّث تلقائيًا حسب تاريخ الجهاز.</p>
+    </div>
+    <div class="card">
+      <h2>✨ آية اليوم باسمك</h2>
+      <p>اكتب اسمك، وبعدها اضغط على الزر علشان تظهر لك آية من الكتاب المقدس مع رسالة تشجيع مخصّصة ليك.</p>
+      <label for="personName">اسمك إيه؟</label>
+      <input id="personName" maxlength="40" autocomplete="given-name" placeholder="اكتب اسمك هنا">
+      <button id="showVerse">✝ إظهار آية اليوم</button>
+      <p class="note">الآية نفسها من الكتاب المقدس، واسمك بيظهر في التحية والتشجيع—not داخل نص الآية الأصلي.</p>
+    </div>
+  </section>
+
+  <section id="versePage" class="card">
+    <div class="verse-card">
+      <div class="verse-mark">✝</div>
+      <div id="verseGreeting" class="greeting"></div>
+      <div class="verse" id="verseText"></div>
+      <div class="reference" id="verseReference"></div>
+    </div>
+    <div class="prayer" id="personalMessage"></div>
+    <button class="back" id="backButton">↩ الرجوع للصفحة الرئيسية</button>
+  </section>
+</main>
+<footer>«كلامك مصباح لرجلي ونور لسبيلي» — مزمور 119:105<br>صُمّم بمحبة ليكون وقتًا صغيرًا كل يوم للتأمل والرجاء.</footer>
+<script>
+const verses = [
+ {text:"الرَّبُّ نُورِي وَخَلَاصِي، مِمَّنْ أَخَافُ؟",ref:"مزمور 27:1",message:"افتكر يا {name} إنك تقدر تبدأ يومك برجاء، وتطلب من ربنا الحكمة والشجاعة في كل خطوة."},
+ {text:"كُلُّ الأَشْيَاءِ مُسْتَطَاعَةٌ لِلْمُؤْمِنِ.",ref:"مرقس 9:23",message:"يا {name}، خليك متمسّك بالرجاء، وخد كل خطوة بهدوء وإيمان، واطلب معونة ربنا."},
+ {text:"سَلاَمِي أُعْطِيكُمْ. لاَ أُعْطِيكُمْ أَنَا كَمَا يُعْطِي الْعَالَمُ.",ref:"يوحنا 14:27",message:"يا {name}، أتمنى لقلبك السلام والطمأنينة النهارده، وإنك تلاقي قوة في وقت القلق."},
+ {text:"اَلرَّبُّ قَرِيبٌ لِكُلِّ الَّذِينَ يَدْعُونَهُ.",ref:"مزمور 145:18",message:"يا {name}، خُد لحظة للصلاة واحكي لربنا اللي في قلبك، وامشِ يومك برجاء."},
+ {text:"أَحِبُّوا بَعْضُكُمْ بَعْضًا كَمَا أَحْبَبْتُكُمْ أَنَا.",ref:"يوحنا 15:12",message:"يا {name}، خلّي المحبة تظهر في كلامك وأفعالك النهارده، حتى في أبسط المواقف."},
+ {text:"لاَ تَخَفْ لأَنِّي مَعَكَ.",ref:"إشعياء 41:10",message:"يا {name}، لما تواجه حاجة صعبة، خُد نفسًا واطلب معونة ربنا، وخطوة وراء خطوة هتقدر تتعامل معها."},
+ {text:"فَكُلُّ مَا تُرِيدُونَ أَنْ يَفْعَلَ النَّاسُ بِكُمُ افْعَلُوا هكَذَا أَنْتُمْ أَيْضًا بِهِمْ.",ref:"متى 7:12",message:"يا {name}، عامل الناس باللطف والاحترام اللي بتحب تشوفه منهم، وخلّي يومك مليان خير."}
+];
+function localDate(date){
+ return new Intl.DateTimeFormat('ar-EG-u-ca-gregory',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).format(date);
+}
+const now = new Date();
+const tomorrow = new Date(now);
+tomorrow.setDate(now.getDate()+1);
+document.getElementById('todayDate').textContent=localDate(now);
+document.getElementById('tomorrowDate').textContent=localDate(tomorrow);
+
+document.getElementById('showVerse').addEventListener('click',()=>{
+ const input=document.getElementById('personName');
+ const name=input.value.trim();
+ if(!name){input.focus();input.setCustomValidity('اكتب اسمك الأول علشان نعرض الآية باسمك.');input.reportValidity();input.setCustomValidity('');return;}
+ const dayNumber=Math.floor(new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime()/86400000);
+ const verse=verses[((dayNumber%verses.length)+verses.length)%verses.length];
+ document.getElementById('verseGreeting').textContent='ربنا يفرّح قلبك يا '+name+' ❤️';
+ document.getElementById('verseText').textContent='«'+verse.text+'»';
+ document.getElementById('verseReference').textContent=verse.ref;
+ document.getElementById('personalMessage').textContent=verse.message.replaceAll('{name}',name);
+ document.getElementById('homePage').style.display='none';
+ document.getElementById('versePage').style.display='block';
+ window.scrollTo({top:0,behavior:'smooth'});
+});
+document.getElementById('backButton').addEventListener('click',()=>{
+ document.getElementById('versePage').style.display='none';
+ document.getElementById('homePage').style.display='block';
+ window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>
